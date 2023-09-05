@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+<!--            <solid android:color="?attr/colorSurfaceVariant" /> &lt;!&ndash; Doldurma rengini istediğiniz renkle değiştirin &ndash;&gt;-->
+            <solid android:color="?attr/selectorColor" /> <!-- Doldurma rengini istediğiniz renkle değiştirin -->
+            <corners android:radius="10dp" /> <!-- Kenarların yuvarlatılma miktarını ayarlayın (50dp oval bir şekil verir) -->
+        </shape>
+    </item>
+</layer-list>
