@@ -1,4 +1,4 @@
-package com.example.movie.ui.watchlist
+package com.example.movie.ui.home
 
 import android.content.Context
 import android.util.Log
@@ -8,23 +8,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movie.data.local.WatchListDatabase
 import com.example.movie.data.model.Movie.Result
-import com.example.movie.databinding.ItemMovieBinding
+import com.example.movie.databinding.ItemMovieSearchBinding
 import com.example.movie.util.constants.Constants
 
 
-class WatchListAdapter(
+class SearchAdapter(
     private var movieList: List<Result>,
     var onclick: (Result) -> Unit,
-    var movieDatabaseControl: (Result,Boolean,Int) -> Unit,
+    var movieDatabaseControl: (Result,Boolean) -> Unit,
     var context: Context?
 ) :
-    RecyclerView.Adapter<WatchListAdapter.ViewHolder>() {
+    RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
     var database : WatchListDatabase? = null
 
-    inner class ViewHolder(val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: ItemMovieSearchBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemMovieSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         database = WatchListDatabase.getMovieDatabase(context!!)
         return ViewHolder(binding)
 
@@ -40,11 +40,11 @@ class WatchListAdapter(
                 }
                 itemTitleTextview.text = movieList.get(position).title
                 itemCard.setOnClickListener {
-//                    onclick(movieList.get(position))
+                    onclick(movieList.get(position))
 
                 }
                 addWatchList.setOnCheckedChangeListener { checkBox, isChecked ->
-                        movieDatabaseControl(movieList.get(adapterPosition),isChecked,adapterPosition)
+                        movieDatabaseControl(movieList.get(position),isChecked)
                 }
 
                 val url = Constants.IMAGE_BASE_URL + "t/p/w500" + movieList.get(position).posterPath

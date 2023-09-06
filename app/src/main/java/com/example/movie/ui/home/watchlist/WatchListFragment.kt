@@ -1,5 +1,6 @@
-package com.example.movie.ui.watchlist
+package com.example.movie.ui.home.watchlist
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movie.data.local.WatchListDatabase
 import com.example.movie.data.model.Movie.Result
 import com.example.movie.databinding.FragmentWatchListBinding
+import com.example.movie.ui.details.DetailsActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -57,7 +59,10 @@ class WatchListFragment : Fragment() {
 //            watchListRecyclerview.setItemViewCacheSize(movieList?.size ?: 0)
             watchListAdapter = WatchListAdapter(
                 movieList = movieList!!, onclick = { result ->
-                    Log.d("___", "initRecyclerView: " + result.title)
+                    val intent = Intent(context, DetailsActivity::class.java)
+                    intent.putExtra("result",result)
+                    startActivity(intent)
+
                 },
                 movieDatabaseControl = { result, isCheck, pozition ->
                     if (isCheck) {
@@ -101,5 +106,10 @@ class WatchListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initRecyclerView()
     }
 }

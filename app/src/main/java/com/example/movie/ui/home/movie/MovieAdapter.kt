@@ -1,4 +1,4 @@
-package com.example.movie.ui.movie
+package com.example.movie.ui.home.movie
 
 import android.content.Context
 import android.util.Log
@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.example.movie.data.local.WatchListDatabase
 import com.example.movie.data.model.Movie.Result
 import com.example.movie.databinding.ItemMovieBinding
-import com.example.movie.databinding.ItemMovieSearchBinding
 import com.example.movie.util.constants.Constants
 
 
@@ -41,7 +40,7 @@ class MovieAdapter(
                 }
                 itemTitleTextview.text = movieList.get(position).title
                 itemCard.setOnClickListener {
-//                    onclick(movieList.get(position))
+                    onclick(movieList.get(position))
 
                 }
                 addWatchList.setOnCheckedChangeListener { checkBox, isChecked ->

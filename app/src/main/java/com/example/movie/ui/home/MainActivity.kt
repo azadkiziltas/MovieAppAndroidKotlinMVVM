@@ -1,6 +1,7 @@
-package com.example.movie.ui
+package com.example.movie.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,17 +12,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.R
 import com.example.movie.data.local.WatchListDatabase
 import com.example.movie.data.model.Movie.Result
 import com.example.movie.databinding.ActivityMainBinding
-import com.example.movie.ui.movie.MovieAdapter
+import com.example.movie.ui.details.DetailsActivity
 import com.google.android.material.internal.EdgeToEdgeUtils
-import com.google.gson.Gson
-import com.google.gson.JsonArray
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -121,7 +119,11 @@ class MainActivity : AppCompatActivity() {
         binding?.apply {
             searchMovieAdapter = SearchAdapter(
                 movieList = searchResponseMovie, onclick = { result ->
-                    database?.movieDAO()?.insert(result)
+
+                    val intent = Intent(applicationContext, DetailsActivity::class.java)
+                    intent.putExtra("result",result)
+                    startActivity(intent)
+
 
                 },
                 movieDatabaseControl = { result,isCheck ->
@@ -145,6 +147,11 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        search(binding.searchView.editText.text.toString())
+        }
 
 
 }

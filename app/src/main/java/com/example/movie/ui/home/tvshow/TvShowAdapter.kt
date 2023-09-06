@@ -1,4 +1,4 @@
-package com.example.movie.ui.tvshow
+package com.example.movie.ui.home.tvshow
 
 import android.content.Context
 import android.view.LayoutInflater

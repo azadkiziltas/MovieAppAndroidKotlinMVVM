@@ -1,4 +1,4 @@
-package com.example.movie.ui.watchlist
+package com.example.movie.ui.home.watchlist
 
 import com.example.movie.data.repository.TvShow.TvShowRepository
 import com.example.movie.ui.base.BaseViewModel

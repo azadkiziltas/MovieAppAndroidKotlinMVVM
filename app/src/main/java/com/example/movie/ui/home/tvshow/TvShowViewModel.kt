@@ -1,25 +1,29 @@
-package com.example.movie.ui
+package com.example.movie.ui.home.tvshow
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.movie.data.model.Movie.MovieResponse
-import com.example.movie.data.repository.Search.Movie.SearchMovieRepository
+import com.example.movie.data.model.TvShow.TvShowResponse
+import com.example.movie.data.repository.Movie.MovieRepository
+import com.example.movie.data.repository.TvShow.TvShowRepository
 import com.example.movie.ui.base.BaseViewModel
 import com.example.movie.util.constants.ResourceStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
-class MainViewModel @Inject constructor(private val searchRepository: SearchMovieRepository)  : BaseViewModel() {
+class TvShowViewModel @Inject constructor(private val userRepository: TvShowRepository) :
+    BaseViewModel() {
+    var allPopularTvShowLiveData = MutableLiveData<TvShowResponse>()
 
-    var searchLiveData = MutableLiveData<MovieResponse>()
+    init {
+        getAllPopularTvShow()
+    }
 
-
-    fun getAllComments(search:String) = viewModelScope.launch {
-        searchRepository.searchMovies(search)
+    fun getAllPopularTvShow() = viewModelScope.launch {
+        userRepository.getAllPopularTvShow()
             .asLiveData(viewModelScope.coroutineContext).observeForever {
                 when (it.status) {
                     ResourceStatus.LOADING -> {
@@ -27,7 +31,7 @@ class MainViewModel @Inject constructor(private val searchRepository: SearchMovi
                     }
 
                     ResourceStatus.SUCCESS -> {
-                        searchLiveData.postValue(it.data!!)
+                        allPopularTvShowLiveData.postValue(it.data!!)
                         loading.postValue(false)
                     }
 
@@ -39,5 +43,4 @@ class MainViewModel @Inject constructor(private val searchRepository: SearchMovi
                 }
             }
     }
-
 }

@@ -1,5 +1,6 @@
-package com.example.movie.ui.movie
+package com.example.movie.ui.home.movie
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,11 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.data.local.WatchListDatabase
 import com.example.movie.data.model.Movie.Result
 import com.example.movie.databinding.FragmentMovieBinding
+import com.example.movie.ui.details.DetailsActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -113,7 +114,11 @@ class MovieFragment : Fragment() {
         binding?.apply {
             movieAdapter = MovieAdapter(
                 movieList = movieList, onclick = { result ->
-                    database?.movieDAO()?.insert(result)
+                    val intent = Intent(context,DetailsActivity::class.java)
+                    intent.putExtra("result",result)
+                    startActivity(intent)
+
+
 
                 },
                 movieDatabaseControl = { result,isCheck ->
@@ -136,5 +141,11 @@ class MovieFragment : Fragment() {
 
 
         }
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        observeViewModel()
     }
 }

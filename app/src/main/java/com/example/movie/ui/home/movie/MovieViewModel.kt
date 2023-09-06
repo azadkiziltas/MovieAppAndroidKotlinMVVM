@@ -1,12 +1,12 @@
-package com.example.movie.ui.tvshow
+package com.example.movie.ui.home.movie
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.movie.data.model.Movie.MovieResponse
-import com.example.movie.data.model.TvShow.TvShowResponse
 import com.example.movie.data.repository.Movie.MovieRepository
-import com.example.movie.data.repository.TvShow.TvShowRepository
 import com.example.movie.ui.base.BaseViewModel
 import com.example.movie.util.constants.ResourceStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,16 +14,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TvShowViewModel @Inject constructor(private val userRepository: TvShowRepository) :
+class MovieViewModel @Inject constructor(private val userRepository: MovieRepository) :
     BaseViewModel() {
-    var allPopularTvShowLiveData = MutableLiveData<TvShowResponse>()
+    var allPopularMoviesLiveData = MutableLiveData<MovieResponse>()
 
     init {
-        getAllPopularTvShow()
+        getAllPopularMovies()
     }
 
-    fun getAllPopularTvShow() = viewModelScope.launch {
-        userRepository.getAllPopularTvShow()
+    fun getAllPopularMovies() = viewModelScope.launch {
+        userRepository.getAllPopularMovies()
             .asLiveData(viewModelScope.coroutineContext).observeForever {
                 when (it.status) {
                     ResourceStatus.LOADING -> {
@@ -31,7 +31,7 @@ class TvShowViewModel @Inject constructor(private val userRepository: TvShowRepo
                     }
 
                     ResourceStatus.SUCCESS -> {
-                        allPopularTvShowLiveData.postValue(it.data!!)
+                        allPopularMoviesLiveData.postValue(it.data!!)
                         loading.postValue(false)
                     }
 

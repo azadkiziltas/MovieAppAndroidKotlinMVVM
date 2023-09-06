@@ -3,6 +3,10 @@ package com.example.movie.di
 import com.example.movie.data.repository.Movie.MovieRemoteDataSource
 import com.example.movie.data.repository.TvShow.TvShowRemoteDataSource
 import com.example.movie.data.repository.Movie.MovieDataSource
+import com.example.movie.data.repository.MovieDetails.MovieDetailsDataSource
+import com.example.movie.data.repository.MovieDetails.MovieDetailsRemoteDataSource
+import com.example.movie.data.repository.MovieImages.MovieImagesDataSource
+import com.example.movie.data.repository.MovieImages.MovieImagesRemoteDataSource
 import com.example.movie.data.repository.Search.Movie.SearchMovieDataSource
 import com.example.movie.data.repository.Search.Movie.SearchMovieRemoteDataSource
 import com.example.movie.data.repository.TvShow.TvShowDataSource
@@ -37,6 +41,20 @@ abstract class DataSourceModule {
     abstract fun bindSearchMovieDataSource(
         dataSource: SearchMovieRemoteDataSource
     ): SearchMovieDataSource
+
+
+        @Binds
+    @Singleton
+    abstract fun bindMovieDetailsDataSource(
+        dataSource: MovieDetailsRemoteDataSource
+    ): MovieDetailsDataSource
+
+
+        @Binds
+    @Singleton
+    abstract fun bindMovieImagesDataSource(
+        dataSource: MovieImagesRemoteDataSource
+    ): MovieImagesDataSource
 
 
 

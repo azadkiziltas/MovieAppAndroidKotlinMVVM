@@ -1,4 +1,4 @@
-package com.example.movie.ui.tvshow
+package com.example.movie.ui.home.tvshow
 
 import android.os.Bundle
 import android.util.Log
@@ -12,14 +12,13 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movie.data.model.TvShow.Result
 import com.example.movie.databinding.FragmentTvShowBinding
-import com.example.movie.ui.movie.MovieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class TvShowFragment : Fragment() {
     private lateinit var tvShowAdapter: TvShowAdapter
-    val tvShowViewModel:TvShowViewModel by viewModels()
+    val tvShowViewModel: TvShowViewModel by viewModels()
     private var _binding: FragmentTvShowBinding? = null
 
 
