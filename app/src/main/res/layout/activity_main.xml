@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
->
+    android:layout_height="match_parent">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -17,8 +16,7 @@
             android:id="@+id/cat_search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/cat_searchbar_hint">
-        </com.google.android.material.search.SearchBar>
+            android:hint="@string/cat_searchbar_hint"></com.google.android.material.search.SearchBar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.search.SearchView
@@ -28,30 +26,68 @@
         android:hint="@string/cat_searchbar_hint"
         app:layout_anchor="@id/cat_search_bar">
 
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nested_scroll_view"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                >
 
-
-                <androidx.recyclerview.widget.RecyclerView
-
-                    android:id="@+id/movie_recyclerview"
-                    android:layout_width="match_parent"
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggle_buttons"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:paddingBottom="200dp"/>
-            </androidx.core.widget.NestedScrollView>
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="5dp"
+
+                    app:singleSelection="true">
+
+                    <Button
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Movies" />
+
+                    <Button
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="People" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/nested_scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+
+                            android:id="@+id/movie_recyclerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+
+            </LinearLayout>
+
 
         </FrameLayout>
     </com.google.android.material.search.SearchView>
@@ -60,12 +96,11 @@
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:background="?android:attr/windowBackground"
-        android:layout_gravity="bottom"
         app:menu="@menu/bottom_nav_menu" />
-
 
 
     <fragment
@@ -73,10 +108,10 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_gravity="top"
 
         app:defaultNavHost="true"
-        android:layout_gravity="top"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:navGraph="@navigation/mobile_navigation" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

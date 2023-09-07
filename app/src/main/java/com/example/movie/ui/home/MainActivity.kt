@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import androidx.activity.viewModels
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -18,7 +17,9 @@ import com.example.movie.R
 import com.example.movie.data.local.WatchListDatabase
 import com.example.movie.data.model.Movie.Result
 import com.example.movie.databinding.ActivityMainBinding
-import com.example.movie.ui.details.DetailsActivity
+import com.example.movie.ui.movieDetails.DetailsActivity
+import com.example.movie.ui.peopleDetails.PeopleDetailsActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.internal.EdgeToEdgeUtils
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,9 +30,11 @@ class MainActivity : AppCompatActivity() {
 
 
     private lateinit var binding: ActivityMainBinding
+    private var searchFilter: String = "movie"
     private val TAG = "___"
-    private lateinit var searchMovieAdapter: SearchAdapter
-    var database : WatchListDatabase? = null
+    private lateinit var searchMovieAdapter: SearchMovieAdapter
+    private lateinit var searchPeopleAdapter: SearchPeopleAdapter
+    var database: WatchListDatabase? = null
 
 
     @SuppressLint("RestrictedApi")
@@ -57,9 +60,15 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                Log.d("TAG", "onTextChanged: "+s)
+                Log.d("TAG", "onTextChanged: " + s)
 
-                search(s.toString())
+                if (searchFilter.equals("movie"))
+                {
+                searchMovie(s.toString())
+                }
+                else{
+                    searchPeople(s.toString())
+                }
 
 
             }
@@ -78,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
                 val totalItemCount = layoutManager.itemCount
                 val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
-                Log.d(TAG, "onScrolled: "+lastVisibleItem)
+                Log.d(TAG, "onScrolled: " + lastVisibleItem)
                 // Eğer son görünür öğe, toplam öğe sayısının bir eksiği ise, sona gelinmiştir.
                 if (lastVisibleItem == totalItemCount - 1) {
                     // RecyclerView'ın sonuna gelindi, yeni verileri yüklemek için gerekli işlemleri yapabilirsiniz.
@@ -88,19 +97,92 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+        binding.toggleButtons.isSelectionRequired = true
+        binding.toggleButtons.addOnButtonCheckedListener { group, checkedId, isChecked ->
+
+            if (isChecked) {
+                if (checkedId == 1)
+                {
+                    searchFilter = "movie"
+                    searchMovie(binding.searchView.editText.text.toString())
+
+                }
+                else{
+                    searchFilter = "people"
+                    searchPeople(binding.searchView.editText.text.toString())
+
+                }
+
+            }
+        }
 
     }
 
-    private fun search(search: String) {
-        viewModel.getAllComments(search)
+    private fun searchPeople(search: String) {
+        viewModel.searchPeople(search)
         viewModel.apply {
-            searchLiveData.observe(this@MainActivity, Observer {
+            searchPeopleLiveData.observe(this@MainActivity, Observer {
 
                 it.results.forEach {
-                    Log.e("___","it " +it.title)
+                    Log.e("___", "it " + it.name)
 
                 }
-                    initRecyclerView(it.results)
+                initPeopleRecyclerView(it.results)
+
+            })
+
+            error.observe(this@MainActivity, Observer {
+                it.run {
+
+                }
+            })
+            loading.observe(this@MainActivity, Observer {
+
+            })
+        }
+    }
+
+    private fun initPeopleRecyclerView(results: List<com.example.movie.data.model.People.Result>) {
+
+        binding?.apply {
+            searchPeopleAdapter = SearchPeopleAdapter(
+                movieList = results,
+
+                onclick = { result ->
+                    val intent = Intent(applicationContext, PeopleDetailsActivity::class.java)
+                    intent.putExtra("result", result)
+                    startActivity(intent)
+                },
+
+                movieDatabaseControl = { result, isCheck ->
+
+                },
+
+
+                applicationContext
+            )
+            movieRecyclerview.apply {
+                adapter = searchPeopleAdapter
+                layoutManager = LinearLayoutManager(context)
+//                layoutManager = LinearLayoutManager(applicationContext)
+
+            }
+
+
+        }
+
+    }
+
+    private fun searchMovie(search: String) {
+        viewModel.searchMovies(search)
+        viewModel.apply {
+            searchMovieLiveData.observe(this@MainActivity, Observer {
+
+                it.results.forEach {
+                    Log.e("___", "it " + it.title)
+
+                }
+                initRecyclerView(it.results)
 
             })
 
@@ -117,20 +199,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRecyclerView(searchResponseMovie: List<Result>) {
         binding?.apply {
-            searchMovieAdapter = SearchAdapter(
+            searchMovieAdapter = SearchMovieAdapter(
                 movieList = searchResponseMovie, onclick = { result ->
 
                     val intent = Intent(applicationContext, DetailsActivity::class.java)
-                    intent.putExtra("result",result)
+                    intent.putExtra("result", result)
                     startActivity(intent)
 
 
                 },
-                movieDatabaseControl = { result,isCheck ->
-                    if (isCheck){
+                movieDatabaseControl = { result, isCheck ->
+                    if (isCheck) {
                         database?.movieDAO()?.insert(result)
-                    }
-                    else{
+                    } else {
                         database?.movieDAO()?.delete(result)
                     }
 
@@ -150,8 +231,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        search(binding.searchView.editText.text.toString())
+        if (searchFilter.equals("movie")){
+
+        searchMovie(binding.searchView.editText.text.toString())
         }
+        else{
+            searchPeople(binding.searchView.editText.text.toString())
+
+        }
+    }
 
 
 }

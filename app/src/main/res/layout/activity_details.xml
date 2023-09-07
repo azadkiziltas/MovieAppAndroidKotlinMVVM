@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.details.DetailsActivity">
+    tools:context=".ui.movieDetails.DetailsActivity">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -30,7 +30,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="end"
                 android:button="@drawable/watch_list_selector"
-                app:buttonTint="?attr/colorPrimary" />
+                app:buttonTint="?attr/colorControlNormal" />
 
 
         </com.google.android.material.appbar.MaterialToolbar>

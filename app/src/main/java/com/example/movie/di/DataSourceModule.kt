@@ -1,16 +1,19 @@
 package com.example.movie.di
 
-import com.example.movie.data.repository.Movie.MovieRemoteDataSource
-import com.example.movie.data.repository.TvShow.TvShowRemoteDataSource
 import com.example.movie.data.repository.Movie.MovieDataSource
-import com.example.movie.data.repository.MovieDetails.MovieDetailsDataSource
-import com.example.movie.data.repository.MovieDetails.MovieDetailsRemoteDataSource
-import com.example.movie.data.repository.MovieImages.MovieImagesDataSource
-import com.example.movie.data.repository.MovieImages.MovieImagesRemoteDataSource
+import com.example.movie.data.repository.Movie.MovieDetails.MovieDetailsDataSource
+import com.example.movie.data.repository.Movie.MovieDetails.MovieDetailsRemoteDataSource
+import com.example.movie.data.repository.Movie.MovieImages.MovieImagesDataSource
+import com.example.movie.data.repository.Movie.MovieImages.MovieImagesRemoteDataSource
+import com.example.movie.data.repository.Movie.MovieRemoteDataSource
+import com.example.movie.data.repository.People.PeopleDataSource
+import com.example.movie.data.repository.People.PeopleRemoteDataSource
+import com.example.movie.data.repository.People.PoepleDetails.PeopleDetailsDataSource
+import com.example.movie.data.repository.People.PoepleDetails.PeopleDetailsRemoteDataSource
 import com.example.movie.data.repository.Search.Movie.SearchMovieDataSource
 import com.example.movie.data.repository.Search.Movie.SearchMovieRemoteDataSource
-import com.example.movie.data.repository.TvShow.TvShowDataSource
-
+import com.example.movie.data.repository.Search.People.SearchPeopleDataSource
+import com.example.movie.data.repository.Search.People.SearchPeopleRemoteDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -30,11 +33,6 @@ abstract class DataSourceModule {
         dataSource: MovieRemoteDataSource
     ): MovieDataSource
 
-    @Binds
-    @Singleton
-    abstract fun bindTvShowDataSource(
-        dataSource: TvShowRemoteDataSource
-    ): TvShowDataSource
 
         @Binds
     @Singleton
@@ -57,6 +55,25 @@ abstract class DataSourceModule {
     ): MovieImagesDataSource
 
 
+        @Binds
+    @Singleton
+    abstract fun bindPeopleDataSource(
+        dataSource: PeopleRemoteDataSource
+    ): PeopleDataSource
+
+
+        @Binds
+    @Singleton
+    abstract fun bindPeopleDetailsDataSource(
+        dataSource: PeopleDetailsRemoteDataSource
+    ): PeopleDetailsDataSource
+
+
+    @Binds
+    @Singleton
+    abstract fun bindSearchPeopleDataSource(
+        dataSource: SearchPeopleRemoteDataSource
+    ): SearchPeopleDataSource
 
 
 }

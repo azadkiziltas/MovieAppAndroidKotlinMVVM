@@ -32,6 +32,7 @@ class MovieAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
+
             binding.apply {
                     addWatchList.isChecked = false
                 Log.d("___", "onBindViewHolder: "+ database?.movieDAO()?.allMovies())

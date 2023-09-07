@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movie.data.local.WatchListDatabase
 import com.example.movie.data.model.Movie.Result
 import com.example.movie.databinding.FragmentMovieBinding
-import com.example.movie.ui.details.DetailsActivity
+import com.example.movie.ui.movieDetails.DetailsActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

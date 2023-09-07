@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_movie" />
 
     <fragment
-        android:id="@+id/navigation_genres"
-        android:name="com.example.movie.ui.home.tvshow.TvShowFragment"
+        android:id="@+id/navigation_person"
+        android:name="com.example.movie.ui.home.tvshow.PeopleFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_tv_show" />
+        tools:layout="@layout/fragment_people" />
 
     <fragment
         android:id="@+id/navigation_watch_list"
