@@ -36,9 +36,6 @@ class MovieFragment : Fragment() {
 
         _binding = FragmentMovieBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
-
         database = WatchListDatabase.getMovieDatabase(requireContext())
         observeViewModel()
 
@@ -53,10 +50,8 @@ class MovieFragment : Fragment() {
 
                 // Eğer son görünür öğe, toplam öğe sayısının bir eksiği ise, sona gelinmiştir.
                 if (lastVisibleItem == totalItemCount - 1) {
-                    // RecyclerView'ın sonuna gelindi, yeni verileri yüklemek için gerekli işlemleri yapabilirsiniz.
                     Log.d("___", "onScrolled: ")
 
-                    // Örneğin, yeni verileri yükleme işlemini burada başlatabilirsiniz.
                 }
             }
         })
@@ -111,6 +106,7 @@ class MovieFragment : Fragment() {
 
 
     private fun initRecyclerView(movieList: List<Result>) {
+        Log.d("___", "initRecyclerView: ")
         binding?.apply {
             movieAdapter = MovieAdapter(
                 movieList = movieList, onclick = { result ->

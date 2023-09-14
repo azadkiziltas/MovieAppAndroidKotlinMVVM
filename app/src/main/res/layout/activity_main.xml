@@ -46,13 +46,14 @@
 
                     app:singleSelection="true">
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/movie_filter_button"
                         style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Movies" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

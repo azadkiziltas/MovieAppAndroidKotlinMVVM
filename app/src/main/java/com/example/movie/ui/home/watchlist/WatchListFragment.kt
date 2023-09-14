@@ -36,21 +36,15 @@ class WatchListFragment : Fragment() {
         _binding = FragmentWatchListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
-
         database = WatchListDatabase.getMovieDatabase(requireContext())
 
-
         movieList = database?.movieDAO()?.allMovies() as ArrayList<Result>?
-
 
         initRecyclerView()
         movieList?.forEach {
             Log.d("___", "onCreateView: " + it.title)
         }
-
         return root
-
     }
 
 
@@ -62,7 +56,6 @@ class WatchListFragment : Fragment() {
                     val intent = Intent(context, DetailsActivity::class.java)
                     intent.putExtra("result",result)
                     startActivity(intent)
-
                 },
                 movieDatabaseControl = { result, isCheck, pozition ->
                     if (isCheck) {

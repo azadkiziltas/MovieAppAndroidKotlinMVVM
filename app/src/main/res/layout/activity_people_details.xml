@@ -34,23 +34,23 @@
 
 
     <com.google.android.material.card.MaterialCardView
-        app:cardElevation="1dp"
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="130dp"
         android:layout_marginBottom="20dp"
+        app:cardElevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.core.widget.NestedScrollView
-            android:padding="5dp"
-
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
+            android:layout_height="match_parent"
+            android:padding="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,22 +58,21 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:paddingHorizontal="20dp"
                     android:id="@+id/title_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
+                    android:paddingHorizontal="20dp"
                     android:textAlignment="center"
                     android:textAppearance="?attr/textAppearanceTitleLarge" />
 
                 <!-- Media -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
-                    app:cardElevation="1dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_height="wrap_content">
-
+                    app:cardElevation="1dp">
 
 
                     <ImageView
@@ -102,12 +101,11 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:layout_marginTop="20dp"
+                        android:id="@+id/recyclerview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:id="@+id/recyclerview"
-                        >
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
 
                     </androidx.recyclerview.widget.RecyclerView>
 

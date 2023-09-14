@@ -62,11 +62,9 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 Log.d("TAG", "onTextChanged: " + s)
 
-                if (searchFilter.equals("movie"))
-                {
-                searchMovie(s.toString())
-                }
-                else{
+                if (searchFilter.equals("movie")) {
+                    searchMovie(s.toString())
+                } else {
                     searchPeople(s.toString())
                 }
 
@@ -79,38 +77,19 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-        binding.movieRecyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-
-                val totalItemCount = layoutManager.itemCount
-                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
-                Log.d(TAG, "onScrolled: " + lastVisibleItem)
-                // Eğer son görünür öğe, toplam öğe sayısının bir eksiği ise, sona gelinmiştir.
-                if (lastVisibleItem == totalItemCount - 1) {
-                    // RecyclerView'ın sonuna gelindi, yeni verileri yüklemek için gerekli işlemleri yapabilirsiniz.
-                    Log.d("___", "onScrolled: ")
-
-                    // Örneğin, yeni verileri yükleme işlemini burada başlatabilirsiniz.
-                }
-            }
-        })
         binding.toggleButtons.isSelectionRequired = true
+        binding.movieFilterButton.isChecked = true
         binding.toggleButtons.addOnButtonCheckedListener { group, checkedId, isChecked ->
-
+            Log.d(TAG, "onCreate: " + checkedId)
             if (isChecked) {
-                if (checkedId == 1)
-                {
-                    searchFilter = "movie"
-                    searchMovie(binding.searchView.editText.text.toString())
-
-                }
-                else{
+                if (checkedId == 1) {
                     searchFilter = "people"
                     searchPeople(binding.searchView.editText.text.toString())
 
+                } else {
+
+                    searchFilter = "movie"
+                    searchMovie(binding.searchView.editText.text.toString())
                 }
 
             }
@@ -231,11 +210,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (searchFilter.equals("movie")){
+        if (searchFilter.equals("movie")) {
 
-        searchMovie(binding.searchView.editText.text.toString())
-        }
-        else{
+            searchMovie(binding.searchView.editText.text.toString())
+        } else {
             searchPeople(binding.searchView.editText.text.toString())
 
         }

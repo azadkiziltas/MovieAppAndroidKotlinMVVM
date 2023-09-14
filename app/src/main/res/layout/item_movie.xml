@@ -31,11 +31,10 @@
                 app:cardElevation="1dp"
                 android:layout_height="wrap_content">
 
-
             <ImageView
                 android:id="@+id/item_imageview"
-                android:layout_width="140dp"
-                android:layout_height="210dp"
+                android:layout_width="160dp"
+                android:layout_height="240dp"
                 android:scaleType="centerInside"
                 />
             </com.google.android.material.card.MaterialCardView>
@@ -67,17 +66,25 @@
 
 
         </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="40dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="end"
+            android:layout_height="40dp">
+
+
         <CheckBox
             android:layout_gravity="right"
-            android:layout_margin="15dp"
             android:id="@+id/add_watch_list"
             android:background="@drawable/selector_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/watch_list_selector"
-            app:buttonTint="?attr/colorPrimary"
+            app:buttonTint="?attr/colorControlNormal"
             tools:layout_editor_absoluteX="92dp"
             tools:layout_editor_absoluteY="1dp" />
+        </com.google.android.material.card.MaterialCardView>
 
 
     </com.google.android.material.card.MaterialCardView>

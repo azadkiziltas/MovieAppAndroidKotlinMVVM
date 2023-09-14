@@ -34,8 +34,8 @@
 
             <ImageView
                 android:id="@+id/item_imageview"
-                android:layout_width="140dp"
-                android:layout_height="210dp"
+                android:layout_width="160dp"
+                android:layout_height="240dp"
                 android:scaleType="centerInside"
                 />
             </com.google.android.material.card.MaterialCardView>
