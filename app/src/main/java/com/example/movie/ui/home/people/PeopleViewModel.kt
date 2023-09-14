@@ -1,4 +1,4 @@
-package com.example.movie.ui.home.tvshow
+package com.example.movie.ui.home.people
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
