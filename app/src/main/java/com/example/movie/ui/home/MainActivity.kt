@@ -82,17 +82,16 @@ class MainActivity : AppCompatActivity() {
         binding.toggleButtons.addOnButtonCheckedListener { group, checkedId, isChecked ->
             Log.d(TAG, "onCreate: " + checkedId)
             if (isChecked) {
-                if (checkedId == 1) {
-                    searchFilter = "people"
-                    searchPeople(binding.searchView.editText.text.toString())
+                searchFilter = "people"
+                searchPeople(binding.searchView.editText.text.toString())
 
-                } else {
+            } else {
 
-                    searchFilter = "movie"
-                    searchMovie(binding.searchView.editText.text.toString())
-                }
-
+                searchFilter = "movie"
+                searchMovie(binding.searchView.editText.text.toString())
             }
+
+
         }
 
     }
