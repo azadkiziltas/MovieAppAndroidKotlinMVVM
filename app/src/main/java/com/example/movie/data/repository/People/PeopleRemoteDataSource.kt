@@ -17,7 +17,7 @@ class PeopleRemoteDataSource @Inject constructor(private val api: PlaceHolderApi
     override suspend fun getAllPopularPeople(page:String): Flow<Resource<PeopleResponse>> = flow  {
         try {
             emit(Resource.Loading())
-            val list = api.getAllPopularPeople(Constants.AUT, Constants.ACCEPT,page)
+            val list = api.getAllPopularPeople(Constants.API_KEY, Constants.ACCEPT,page)
             emit(Resource.Success(list.body()))
         } catch (e: Exception) {
             emit(Resource.Error(e))

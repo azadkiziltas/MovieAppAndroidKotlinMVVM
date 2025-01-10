@@ -17,7 +17,7 @@ class MovieDetailsRemoteDataSource @Inject constructor(private val api: PlaceHol
     override suspend fun getMovieDetails(movieId:String): Flow<Resource<MovieDetailsResponse>> = flow  {
         try {
             emit(Resource.Loading())
-            val list = api.movieDetails(Constants.AUT, Constants.ACCEPT, movieId)
+            val list = api.movieDetails(Constants.API_KEY, Constants.ACCEPT, movieId)
             emit(Resource.Success(list.body()))
         } catch (e: Exception) {
             emit(Resource.Error(e))

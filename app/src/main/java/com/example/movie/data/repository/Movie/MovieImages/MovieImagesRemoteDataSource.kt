@@ -1,6 +1,5 @@
 package com.example.movie.data.repository.Movie.MovieImages
 
-import com.example.movie.data.model.Movie.MovieDetailsResponse
 import com.example.movie.data.model.Movie.MovieImagesResponse
 import com.example.movie.util.constants.Resource
 import com.example.movie.util.constants.Constants
@@ -18,7 +17,7 @@ class MovieImagesRemoteDataSource @Inject constructor(private val api: PlaceHold
     override suspend fun getMovieImages(movieId:String): Flow<Resource<MovieImagesResponse>> = flow  {
         try {
             emit(Resource.Loading())
-            val list = api.getMovieImages(Constants.AUT, Constants.ACCEPT, movieId)
+            val list = api.getMovieImages(Constants.API_KEY, Constants.ACCEPT, movieId)
             emit(Resource.Success(list.body()))
         } catch (e: Exception) {
             emit(Resource.Error(e))

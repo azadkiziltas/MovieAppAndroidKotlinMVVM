@@ -17,7 +17,7 @@ class SearchMovieRemoteDataSource @Inject constructor(private val api: PlaceHold
     override suspend fun searchMovies(search:String): Flow<Resource<MovieResponse>> = flow  {
         try {
             emit(Resource.Loading())
-            val list = api.searchMovies(Constants.AUT, Constants.ACCEPT,search)
+            val list = api.searchMovies(Constants.API_KEY, Constants.ACCEPT,search)
             emit(Resource.Success(list.body()))
         } catch (e: Exception) {
             emit(Resource.Error(e))

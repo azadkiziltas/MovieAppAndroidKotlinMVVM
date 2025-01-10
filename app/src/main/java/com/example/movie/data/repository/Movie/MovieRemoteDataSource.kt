@@ -17,7 +17,7 @@ class MovieRemoteDataSource @Inject constructor(private val api: PlaceHolderApi)
     override suspend fun getAllPopularMovies(): Flow<Resource<MovieResponse>> = flow  {
         try {
             emit(Resource.Loading())
-            val list = api.getAllPopularMovies(Constants.AUT, Constants.ACCEPT)
+            val list = api.getAllPopularMovies(Constants.API_KEY, Constants.ACCEPT)
             emit(Resource.Success(list.body()))
         } catch (e: Exception) {
             emit(Resource.Error(e))

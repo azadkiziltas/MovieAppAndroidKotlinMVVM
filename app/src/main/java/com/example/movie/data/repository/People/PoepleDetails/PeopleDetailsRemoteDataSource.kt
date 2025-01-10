@@ -17,7 +17,7 @@ class PeopleDetailsRemoteDataSource @Inject constructor(private val api: PlaceHo
     override suspend fun getPeopleDetails(peopleId:String): Flow<Resource<PeopleDetailsResponse>> = flow  {
         try {
             emit(Resource.Loading())
-            val list = api.personDetails(Constants.AUT, Constants.ACCEPT, peopleId)
+            val list = api.personDetails(Constants.API_KEY, Constants.ACCEPT, peopleId)
             emit(Resource.Success(list.body()))
         } catch (e: Exception) {
             emit(Resource.Error(e))

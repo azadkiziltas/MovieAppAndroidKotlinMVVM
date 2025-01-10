@@ -17,7 +17,7 @@ class SearchPeopleRemoteDataSource @Inject constructor(private val api: PlaceHol
     override suspend fun searchPeople(search:String): Flow<Resource<PeopleResponse>> = flow  {
         try {
             emit(Resource.Loading())
-            val list = api.searchPerson(Constants.AUT, Constants.ACCEPT,search)
+            val list = api.searchPerson(Constants.API_KEY, Constants.ACCEPT,search)
             emit(Resource.Success(list.body()))
         } catch (e: Exception) {
             emit(Resource.Error(e))
