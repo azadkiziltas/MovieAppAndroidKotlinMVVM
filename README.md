@@ -39,10 +39,10 @@ The app follows the **MVVM (Model-View-ViewModel)** architecture pattern to ensu
     <th>Gif</th>
   </tr>
   <tr>
-    <td><img src="screenshots/home.png" width="300" height="auto" /></td>
-    <td><img src="screenshots/light_mode.png" width="300" height="auto" /></td>
-    <td><img src="screenshots/details.png" width="300" height="auto" /></td>
-    <td><img src="screenshots/movie.gif" width="220" height="auto" /></td>
+    <td><img src="screenshots/home.png" style="width: 250px;" /></td>
+    <td><img src="screenshots/light_mode.png" style="width: 250px;" /></td>
+    <td><img src="screenshots/details.png" style="width: 250px;" /></td>
+    <td><img src="screenshots/movie.gif" style="width: 250px;" /></td>
   </tr>
 </table>
 
