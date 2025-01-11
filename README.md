@@ -36,6 +36,13 @@ The app follows the **MVVM (Model-View-ViewModel)** architecture pattern to ensu
 | ![Home Screen](screenshots/home.png) | ![Movie Details](screenshots/details.png) | ![Dark Theme](screenshots/dark_mode.png) | ![Light Theme](screenshots/light_mode.png) |
 
 
+## Gif
+
+| Gif                  |
+|------------------------------|
+| ![Gif](screenshots/movie.gif) |
+
+
 ## Setup
 
 1. Clone this repository:
