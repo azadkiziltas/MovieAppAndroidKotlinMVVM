@@ -31,9 +31,21 @@ The app follows the **MVVM (Model-View-ViewModel)** architecture pattern to ensu
 
 ## Screenshots
 
-| Home Screen                  | Light Theme               | Details                 | Gif                 |
-|------------------------------|-----------------------------|----------------------------|----------------------------|
-| <img src="screenshots/home.png" width="400" /> | <img src="screenshots/light_mode.png" width="400" /> | <img src="screenshots/details.png" width="400" /> | <img src="screenshots/movie.gif" width="220" /> |
+<table>
+  <tr>
+    <th>Home Screen</th>
+    <th>Light Theme</th>
+    <th>Details</th>
+    <th>Gif</th>
+  </tr>
+  <tr>
+    <td><img src="screenshots/home.png" width="300" height="auto" /></td>
+    <td><img src="screenshots/light_mode.png" width="300" height="auto" /></td>
+    <td><img src="screenshots/details.png" width="300" height="auto" /></td>
+    <td><img src="screenshots/movie.gif" width="220" height="auto" /></td>
+  </tr>
+</table>
+
 
 
 
